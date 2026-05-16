@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pyralis — Herramientas que iluminan procesos clínicos</title>
+<meta name="description" content="Pyralis construye apps verticales para clínicas y centros de diagnóstico en LATAM. Dictom (dictado radiológico) y Lumen (operaciones clínicas) ya en producción."/>
+<meta name="theme-color" content="#0A0F14"/>
+<meta property="og:title" content="Pyralis — Herramientas que iluminan procesos clínicos"/>
+<meta property="og:description" content="Apps verticales para salud: Dictom, Lumen y más. Productividad medible para clínicas en LATAM."/>
+<meta property="og:type" content="website"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' rx='13' fill='%230A0F14'/%3E%3Ccircle cx='30' cy='30' r='10' fill='none' stroke='%23F59E0B' stroke-width='1' opacity='0.5'/%3E%3Ccircle cx='30' cy='30' r='5' fill='%23F59E0B'/%3E%3Ccircle cx='30' cy='30' r='2.2' fill='%23FEF3C7'/%3E%3C/svg%3E"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+:root {
+  --pyralis-bg:           #0A0F14;
+  --pyralis-bg-elevated:  #0E1521;
+  --pyralis-bg-input:     #1A2332;
+  --pyralis-border:       #1F2937;
+  --pyralis-border-strong:#2D3748;
+  --pyralis-firefly:      #F59E0B;
+  --pyralis-firefly-soft: #FCD34D;
+  --pyralis-firefly-glow: #FEF3C7;
+  --pyralis-text:         #F1F5F9;
+  --pyralis-text-muted:   #94A3B8;
+  --pyralis-text-dim:     #64748B;
+  --accent-dictom:        #F59E0B;
+  --accent-lumen:         #06B6D4;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  background: var(--pyralis-bg);
+  color: var(--pyralis-text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ── ATMÓSFERA: orbes de luz suave en el background ── */
+body::before, body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(120px);
+}
+body::before {
+  width: 600px; height: 600px;
+  background: rgba(245, 158, 11, 0.06);
+  top: -200px; right: -200px;
+}
+body::after {
+  width: 500px; height: 500px;
+  background: rgba(6, 182, 212, 0.04);
+  bottom: -200px; left: -200px;
+}
+
+/* ── NAV ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(16px);
+  background: rgba(10, 15, 20, 0.85);
+  border-bottom: 0.5px solid var(--pyralis-border);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 28px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  font-weight: 500; font-size: 16px; letter-spacing: -0.02em;
+}
+.nav-logo svg { flex-shrink: 0; }
+.nav-links {
+  display: flex; gap: 28px; align-items: center;
+  font-size: 13px; color: var(--pyralis-text-muted);
+}
+.nav-links a { transition: color 0.2s; }
+.nav-links a:hover { color: var(--pyralis-firefly-soft); }
+.nav-cta {
+  background: var(--pyralis-firefly);
+  color: var(--pyralis-bg);
+  padding: 8px 16px; border-radius: 6px;
+  font-weight: 500; font-size: 13px;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.nav-cta:hover {
+  background: var(--pyralis-firefly-soft);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+}
+
+/* ── HERO ── */
+.hero {
+  max-width: 1200px; margin: 0 auto;
+  padding: 100px 28px 120px;
+  text-align: center;
+  position: relative; z-index: 1;
+}
+.hero-logo {
+  margin: 0 auto 40px;
+  width: 110px; height: 110px;
+  position: relative;
+}
+.hero h1 {
+  font-size: clamp(36px, 7vw, 64px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 20px;
+  color: var(--pyralis-text);
+}
+.hero h1 .highlight {
+  color: var(--pyralis-firefly-glow);
+  font-weight: 600;
+  position: relative;
+  display: inline-block;
+  text-shadow:
+    0 0 8px rgba(254, 243, 199, 0.6),
+    0 0 18px rgba(245, 158, 11, 0.4),
+    0 0 32px rgba(245, 158, 11, 0.25);
+}
+.hero p.lead {
+  font-size: clamp(16px, 2vw, 19px);
+  color: var(--pyralis-text-muted);
+  max-width: 600px; margin: 0 auto 40px;
+  line-height: 1.6;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--pyralis-firefly);
+  color: var(--pyralis-bg);
+  padding: 14px 28px; border-radius: 8px;
+  font-weight: 500; font-size: 15px;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+}
+.hero-cta:hover {
+  background: var(--pyralis-firefly-soft);
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.5);
+  transform: translateY(-1px);
+}
+.hero-cta .arrow { transition: transform 0.15s; }
+.hero-cta:hover .arrow { transform: translateX(3px); }
+
+/* ── SECTION ── */
+.section {
+  max-width: 1200px; margin: 0 auto;
+  padding: 80px 28px;
+  position: relative; z-index: 1;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--pyralis-firefly-soft);
+  margin-bottom: 12px;
+}
+.section h2 {
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  color: var(--pyralis-text);
+  margin-bottom: 16px;
+}
+.section-subtitle {
+  font-size: 16px;
+  color: var(--pyralis-text-muted);
+  max-width: 540px;
+  margin: 0 auto;
+}
+
+/* ── APPS GRID ── */
+.apps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+.app-card {
+  background: var(--pyralis-bg-elevated);
+  border: 0.5px solid var(--pyralis-border);
+  border-radius: 16px;
+  padding: 36px 32px;
+  transition: border-color 0.25s, transform 0.25s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.app-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--app-accent);
+}
+.app-card:hover {
+  border-color: var(--pyralis-border-strong);
+  transform: translateY(-3px);
+}
+.app-card.dictom { --app-accent: var(--accent-dictom); }
+.app-card.lumen  { --app-accent: var(--accent-lumen); }
+
+.app-mono {
+  margin-bottom: 24px;
+}
+.app-mono svg { display: block; }
+.app-name {
+  font-size: 26px; font-weight: 500; letter-spacing: -0.028em;
+  color: var(--pyralis-text);
+  margin-bottom: 4px;
+  display: inline-flex; align-items: baseline;
+}
+.app-name .firefly-o {
+  color: var(--pyralis-firefly-glow);
+  font-weight: 600;
+}
+.app-byline {
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--pyralis-text-dim);
+  margin-bottom: 24px;
+}
+.app-byline .by { margin-right: 4px; }
+.app-byline .pyralis { color: var(--pyralis-text-muted); font-weight: 500; letter-spacing: 0.05em; text-transform: none; font-size: 13px; margin-left: 6px; }
+
+.app-desc {
+  font-size: 15px;
+  color: var(--pyralis-text-muted);
+  line-height: 1.65;
+  margin-bottom: 24px;
+  flex-grow: 1;
+}
+.app-features {
+  list-style: none;
+  margin-bottom: 28px;
+}
+.app-features li {
+  font-size: 14px;
+  color: var(--pyralis-text-muted);
+  padding: 6px 0;
+  display: flex; align-items: center; gap: 10px;
+}
+.app-features li::before {
+  content: '';
+  width: 4px; height: 4px; border-radius: 50%;
+  background: var(--app-accent);
+  flex-shrink: 0;
+  box-shadow: 0 0 6px var(--app-accent);
+}
+.app-status {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 4px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 0.5px solid rgba(16, 185, 129, 0.3);
+  color: #6EE7B7;
+  margin-bottom: 24px; align-self: flex-start;
+}
+.app-status::before {
+  content: ''; width: 6px; height: 6px; border-radius: 50%;
+  background: #10B981; box-shadow: 0 0 6px rgba(16,185,129,.6);
+}
+.app-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 500;
+  color: var(--app-accent);
+  transition: gap 0.15s;
+  align-self: flex-start;
+}
+.app-link:hover { gap: 12px; }
+
+/* ── CONTACT ── */
+.contact {
+  text-align: center;
+  padding: 100px 28px;
+  border-top: 0.5px solid var(--pyralis-border);
+  border-bottom: 0.5px solid var(--pyralis-border);
+  background: linear-gradient(180deg, transparent, rgba(245, 158, 11, 0.03), transparent);
+  position: relative; z-index: 1;
+}
+.contact h2 {
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  margin-bottom: 16px;
+}
+.contact p {
+  font-size: 17px;
+  color: var(--pyralis-text-muted);
+  max-width: 540px; margin: 0 auto 32px;
+}
+.contact-email {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--pyralis-bg-elevated);
+  border: 0.5px solid var(--pyralis-border-strong);
+  padding: 14px 24px; border-radius: 10px;
+  font-size: 16px; font-weight: 500;
+  color: var(--pyralis-firefly-soft);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.contact-email:hover {
+  border-color: var(--pyralis-firefly);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+}
+
+/* ── FOOTER ── */
+.footer {
+  text-align: center;
+  padding: 40px 28px;
+  font-size: 12px;
+  color: var(--pyralis-text-dim);
+  position: relative; z-index: 1;
+}
+.footer .firefly-dot {
+  color: var(--pyralis-firefly);
+  margin: 0 4px;
+}
+
+/* ── FIREFLY ANIMATIONS ── */
+@keyframes firefly-svg-pulse {
+  0%, 100% { filter:
+    drop-shadow(0 0 6px rgba(245,158,11,0.85))
+    drop-shadow(0 0 16px rgba(245,158,11,0.45))
+    drop-shadow(0 0 28px rgba(245,158,11,0.20));
+  }
+  50% { filter:
+    drop-shadow(0 0 12px rgba(252,211,77,1))
+    drop-shadow(0 0 26px rgba(245,158,11,0.60))
+    drop-shadow(0 0 44px rgba(245,158,11,0.30));
+  }
+}
+.firefly-svg circle[fill="#F59E0B"] {
+  animation: firefly-svg-pulse 2.8s ease-in-out infinite;
+  transform-origin: center;
+}
+@keyframes firefly-core-pulse {
+  0%, 100% { transform: scale(1);    opacity: 0.95; }
+  50%      { transform: scale(1.15); opacity: 1; }
+}
+.firefly-svg circle[fill="#FEF3C7"] {
+  animation: firefly-core-pulse 2.8s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes firefly-text-pulse {
+  0%, 100% {
+    text-shadow:
+      0 0 4px rgba(254,243,199,0.95),
+      0 0 9px rgba(252,211,77,0.85),
+      0 0 18px rgba(245,158,11,0.7),
+      0 0 32px rgba(245,158,11,0.4);
+  }
+  50% {
+    text-shadow:
+      0 0 7px rgba(254,243,199,1),
+      0 0 14px rgba(252,211,77,1),
+      0 0 26px rgba(245,158,11,0.9),
+      0 0 44px rgba(245,158,11,0.55);
+  }
+}
+.hero h1 .highlight {
+  animation: firefly-text-pulse 2.8s ease-in-out infinite;
+}
+.app-name .firefly-o {
+  animation: firefly-text-pulse 2.8s ease-in-out infinite;
+}
+
+/* ── FADE IN ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up { animation: fadeUp 0.8s ease-out both; }
+.fade-up-delay-1 { animation: fadeUp 0.8s ease-out 0.15s both; }
+.fade-up-delay-2 { animation: fadeUp 0.8s ease-out 0.3s both; }
+.fade-up-delay-3 { animation: fadeUp 0.8s ease-out 0.45s both; }
+
+/* ── ACCESIBILIDAD ── */
+@media (prefers-reduced-motion: reduce) {
+  .firefly-svg circle, .hero h1 .highlight, .app-name .firefly-o {
+    animation: none !important;
+  }
+  .fade-up, .fade-up-delay-1, .fade-up-delay-2, .fade-up-delay-3 {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .hero { padding: 60px 20px 80px; }
+  .section { padding: 60px 20px; }
+  .contact { padding: 60px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <svg class="firefly-svg" width="32" height="32" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-label="Pyralis">
+        <rect x="3" y="3" width="54" height="54" rx="13" fill="#0A0F14" stroke="#1F2937" stroke-width="0.8"/>
+        <circle cx="30" cy="30" r="10" fill="none" stroke="#F59E0B" stroke-width="0.6" opacity="0.4"/>
+        <circle cx="30" cy="30" r="5" fill="#F59E0B"/>
+        <circle cx="30" cy="30" r="2.2" fill="#FEF3C7"/>
+      </svg>
+      <span>Pyralis</span>
+    </a>
+    <div class="nav-links">
+      <a href="#apps">Apps</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#contacto" class="nav-cta">Hablemos</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-logo fade-up">
+    <svg class="firefly-svg" width="110" height="110" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-label="Pyralis">
+      <rect x="3" y="3" width="54" height="54" rx="13" fill="#0A0F14" stroke="#1F2937" stroke-width="0.8"/>
+      <circle cx="30" cy="30" r="12" fill="none" stroke="#F59E0B" stroke-width="0.6" opacity="0.35"/>
+      <circle cx="30" cy="30" r="6" fill="#F59E0B"/>
+      <circle cx="30" cy="30" r="2.6" fill="#FEF3C7"/>
+    </svg>
+  </div>
+
+  <h1 class="fade-up-delay-1">
+    Herramientas que <span class="highlight">iluminan</span><br>
+    procesos clínicos.
+  </h1>
+
+  <p class="lead fade-up-delay-2">
+    Pyralis construye apps verticales para clínicas y centros de diagnóstico en LATAM.
+    Cada app es una luciérnaga: un punto brillante que guía en la oscuridad operativa.
+  </p>
+
+  <a href="#apps" class="hero-cta fade-up-delay-3">
+    Ver las apps
+    <span class="arrow">→</span>
+  </a>
+</section>
+
+<!-- ═══════════════════ APPS ═══════════════════ -->
+<section class="section" id="apps">
+  <div class="section-header">
+    <div class="section-eyebrow">Productos</div>
+    <h2>Apps en producción</h2>
+    <p class="section-subtitle">
+      Cada app resuelve un proceso clínico vertical. Diseñadas con código propio y criterio clínico real, no plantillas.
+    </p>
+  </div>
+
+  <div class="apps-grid">
+
+    <!-- ── DICTOM ── -->
+    <div class="app-card dictom">
+      <div class="app-mono">
+        <svg class="firefly-svg" width="56" height="56" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-label="Dictom by Pyralis">
+          <rect x="3" y="3" width="54" height="54" rx="13" fill="#0A0F14" stroke="#1F2937" stroke-width="0.8"/>
+          <path d="M18 14 L18 46 L32 46 Q 46 46, 46 30 Q 46 14, 32 14 Z" fill="none" stroke="#F1F5F9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="33" cy="30" r="9" fill="none" stroke="#F59E0B" stroke-width="0.6" opacity="0.4"/>
+          <circle cx="33" cy="30" r="4" fill="#F59E0B"/>
+          <circle cx="33" cy="30" r="1.8" fill="#FEF3C7"/>
+        </svg>
+      </div>
+      <div class="app-status">En producción</div>
+      <div class="app-name">Dict<span class="firefly-o">o</span>m</div>
+      <div class="app-byline">
+        <span class="by">— BY —</span><span class="pyralis">Pyralis</span>
+      </div>
+      <p class="app-desc">
+        Dictado radiológico inteligente. De la voz al informe completo en segundos, con estándares ACR y léxico controlado. Entrenado con corpus institucional real.
+      </p>
+      <ul class="app-features">
+        <li>Dictado por voz + plantillas ACR</li>
+        <li>Comunicación crítica automática (BI-RADS, Lung-RADS, etc.)</li>
+        <li>Exportación a Word / PDF</li>
+        <li>Sin instalación, corre en el browser</li>
+      </ul>
+      <a href="#contacto" class="app-link">
+        Solicitar demo
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- ── LUMEN ── -->
+    <div class="app-card lumen">
+      <div class="app-mono">
+        <svg class="firefly-svg" width="56" height="56" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-label="Lumen by Pyralis">
+          <rect x="3" y="3" width="54" height="54" rx="13" fill="#0A0F14" stroke="#1F2937" stroke-width="0.8"/>
+          <path d="M16 14 L16 46 L44 46" fill="none" stroke="#F1F5F9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="38" cy="22" r="9" fill="none" stroke="#F59E0B" stroke-width="0.6" opacity="0.4"/>
+          <circle cx="38" cy="22" r="4" fill="#F59E0B"/>
+          <circle cx="38" cy="22" r="1.8" fill="#FEF3C7"/>
+        </svg>
+      </div>
+      <div class="app-status">En producción</div>
+      <div class="app-name">L<span class="firefly-o">u</span>men</div>
+      <div class="app-byline">
+        <span class="by">— BY —</span><span class="pyralis">Pyralis</span>
+      </div>
+      <p class="app-desc">
+        Operaciones clínicas claras. Control de turnos, stock, pedidos, mensajería interna y licencias en una sola interfaz. Pensado para equipos que necesitan visibilidad operativa sin sobrecarga.
+      </p>
+      <ul class="app-features">
+        <li>Control de turnos y derivantes</li>
+        <li>Stock FEFO con alertas automáticas</li>
+        <li>Mensajería interna con firma digital QR</li>
+        <li>Gestión de licencias y permisos por rol</li>
+      </ul>
+      <a href="https://santipitre.github.io/spcd/" target="_blank" class="app-link">
+        Probar Lumen
+        <span>→</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ CONTACT ═══════════════════ -->
+<section class="contact" id="contacto">
+  <h2>¿Querés una app vertical para tu clínica?</h2>
+  <p>
+    Pyralis trabaja con clínicas, centros de diagnóstico y profesionales independientes en Argentina y LATAM.
+    Demos, pilotos y desarrollo a medida.
+  </p>
+  <a href="mailto:santiagopitrella@gmail.com" class="contact-email">
+    <span>✉</span>
+    santiagopitrella@gmail.com
+  </a>
+</section>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<footer class="footer">
+  Pyralis <span class="firefly-dot">·</span> 2026 <span class="firefly-dot">·</span> Apps verticales para salud.
+</footer>
+
+</body>
+</html>
