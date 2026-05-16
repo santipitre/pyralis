@@ -395,11 +395,164 @@ body::after {
   }
 }
 
+/* ── PRICING ── */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.price-card {
+  background: var(--pyralis-bg-elevated);
+  border: 0.5px solid var(--pyralis-border);
+  border-radius: 16px;
+  padding: 32px 28px;
+  position: relative;
+  display: flex; flex-direction: column;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.price-card:hover { border-color: var(--pyralis-border-strong); transform: translateY(-3px); }
+.price-card.featured {
+  border: 1.5px solid var(--pyralis-firefly);
+  background: linear-gradient(180deg, rgba(245,158,11,0.04), var(--pyralis-bg-elevated));
+}
+.price-card.featured::before {
+  content: 'Recomendado';
+  position: absolute;
+  top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--pyralis-firefly);
+  color: var(--pyralis-bg);
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  padding: 5px 14px; border-radius: 20px;
+  box-shadow: 0 0 16px rgba(245,158,11,.4);
+}
+.price-tier {
+  font-size: 13px; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--pyralis-text-muted);
+  margin-bottom: 8px;
+}
+.price-card.featured .price-tier { color: var(--pyralis-firefly-soft); }
+.price-amount {
+  font-size: 38px; font-weight: 500;
+  letter-spacing: -0.03em; line-height: 1.05;
+  color: var(--pyralis-text); margin-bottom: 4px;
+}
+.price-amount .currency {
+  font-size: 18px; font-weight: 400; color: var(--pyralis-text-muted);
+  vertical-align: top; margin-right: 4px;
+}
+.price-amount .per {
+  font-size: 14px; font-weight: 400; color: var(--pyralis-text-muted); letter-spacing: 0;
+}
+.price-desc {
+  font-size: 13px; color: var(--pyralis-text-muted);
+  margin-bottom: 24px; min-height: 36px;
+}
+.price-features {
+  list-style: none; margin: 0 0 28px; padding: 0;
+  flex-grow: 1;
+}
+.price-features li {
+  font-size: 13px; color: var(--pyralis-text);
+  padding: 7px 0; display: flex; align-items: flex-start; gap: 10px;
+  line-height: 1.5;
+}
+.price-features li::before {
+  content: '✓'; color: var(--pyralis-firefly-soft);
+  font-weight: 500; flex-shrink: 0; margin-top: 1px;
+}
+.price-cta {
+  display: block; text-align: center;
+  padding: 12px 16px; border-radius: 8px;
+  font-size: 13px; font-weight: 500;
+  transition: background 0.15s, box-shadow 0.15s, border-color 0.15s;
+  text-decoration: none;
+}
+.price-card .price-cta {
+  background: var(--pyralis-firefly-dim);
+  border: 0.5px solid var(--pyralis-firefly-ring);
+  color: var(--pyralis-firefly-soft);
+}
+.price-card .price-cta:hover {
+  background: rgba(245,158,11,0.22); border-color: var(--pyralis-firefly);
+}
+.price-card.featured .price-cta {
+  background: var(--pyralis-firefly); color: var(--pyralis-bg);
+  border: 0.5px solid var(--pyralis-firefly);
+}
+.price-card.featured .price-cta:hover {
+  background: var(--pyralis-firefly-soft); box-shadow: 0 0 22px rgba(245,158,11,.5);
+}
+.pricing-footnote {
+  text-align: center; font-size: 12px; color: var(--pyralis-text-dim);
+  margin-top: 24px;
+}
+
+/* ── FORM CONTACTO ── */
+.contact-form {
+  max-width: 580px; margin: 32px auto 0;
+  background: var(--pyralis-bg-elevated);
+  border: 0.5px solid var(--pyralis-border);
+  border-radius: 14px;
+  padding: 32px 28px;
+  display: grid; gap: 16px;
+  text-align: left;
+}
+.form-row { display: grid; gap: 6px; }
+.form-row label {
+  font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--pyralis-text-muted);
+}
+.form-row input, .form-row select, .form-row textarea {
+  background: var(--pyralis-bg-input);
+  color: var(--pyralis-text);
+  border: 0.5px solid var(--pyralis-border-strong);
+  border-radius: 6px;
+  padding: 11px 14px;
+  font-family: inherit; font-size: 14px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.form-row input::placeholder, .form-row textarea::placeholder { color: var(--pyralis-text-dim); }
+.form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+  outline: none; border-color: var(--pyralis-firefly);
+  box-shadow: 0 0 0 3px rgba(245,158,11,0.15);
+}
+.form-row textarea { resize: vertical; min-height: 80px; font-family: inherit; }
+.form-submit {
+  background: var(--pyralis-firefly); color: var(--pyralis-bg);
+  border: none; padding: 14px 24px; border-radius: 8px;
+  font-family: inherit; font-size: 14px; font-weight: 500;
+  cursor: pointer; transition: background 0.15s, box-shadow 0.15s, transform 0.05s;
+  margin-top: 4px;
+}
+.form-submit:hover {
+  background: var(--pyralis-firefly-soft);
+  box-shadow: 0 0 24px rgba(245,158,11,0.45);
+}
+.form-submit:active { transform: scale(0.99); }
+.form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.form-msg {
+  font-size: 13px; padding: 12px 16px; border-radius: 8px;
+  border: 0.5px solid; text-align: center;
+}
+.form-msg.success {
+  background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.4);
+  color: #6EE7B7;
+}
+.form-msg.error {
+  background: rgba(248,113,113,0.12); border-color: rgba(248,113,113,0.4);
+  color: #FCA5A5;
+}
+
 @media (max-width: 720px) {
   .nav-links a:not(.nav-cta) { display: none; }
   .hero { padding: 60px 20px 80px; }
   .section { padding: 60px 20px; }
   .contact { padding: 60px 20px; }
+  .price-card { padding: 28px 22px; }
+  .price-amount { font-size: 32px; }
+  .contact-form { padding: 26px 22px; margin: 24px 16px 0; }
 }
 </style>
 </head>
@@ -419,6 +572,7 @@ body::after {
     </a>
     <div class="nav-links">
       <a href="#apps">Apps</a>
+      <a href="#precios">Precios</a>
       <a href="#contacto">Contacto</a>
       <a href="#contacto" class="nav-cta">Hablemos</a>
     </div>
@@ -529,18 +683,205 @@ body::after {
   </div>
 </section>
 
-<!-- ═══════════════════ CONTACT ═══════════════════ -->
-<section class="contact" id="contacto">
-  <h2>¿Querés una app vertical para tu clínica?</h2>
-  <p>
-    Pyralis trabaja con clínicas, centros de diagnóstico y profesionales independientes en Argentina y LATAM.
-    Demos, pilotos y desarrollo a medida.
+<!-- ═══════════════════ PRICING ═══════════════════ -->
+<section class="section" id="precios">
+  <div class="section-header">
+    <div class="section-eyebrow">Precios</div>
+    <h2>Planes que escalan con tu clínica</h2>
+    <p class="section-subtitle">
+      Pagás solo por lo que usás. Sin contratos largos. Cancelás cuando quieras.
+      Todos los planes incluyen actualizaciones automáticas y soporte en español.
+    </p>
+  </div>
+
+  <div class="pricing-grid">
+
+    <!-- ── STARTER ── -->
+    <div class="price-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-amount">
+        <span class="currency">USD</span>49<span class="per"> /mes</span>
+      </div>
+      <div class="price-desc">Para profesionales independientes y equipos chicos.</div>
+      <ul class="price-features">
+        <li>1 app a elección (Dictom o Lumen)</li>
+        <li>Hasta 3 usuarios</li>
+        <li>200 informes IA / mes (Dictom)</li>
+        <li>Soporte por email</li>
+        <li>Actualizaciones automáticas</li>
+      </ul>
+      <a href="#contacto" class="price-cta" data-plan="Starter">Empezar con Starter</a>
+    </div>
+
+    <!-- ── CLÍNICA (featured) ── -->
+    <div class="price-card featured">
+      <div class="price-tier">Clínica</div>
+      <div class="price-amount">
+        <span class="currency">USD</span>199<span class="per"> /mes</span>
+      </div>
+      <div class="price-desc">Para clínicas medianas y centros de diagnóstico.</div>
+      <ul class="price-features">
+        <li>Todas las apps Pyralis incluidas</li>
+        <li>Hasta 10 usuarios + USD 25 por usuario extra</li>
+        <li>Informes IA ilimitados</li>
+        <li>Plantillas personalizadas (logo, formato propio)</li>
+        <li>Soporte WhatsApp prioritario</li>
+        <li>Multi-sede (hasta 3)</li>
+      </ul>
+      <a href="#contacto" class="price-cta" data-plan="Clínica">Hablemos del plan Clínica</a>
+    </div>
+
+    <!-- ── EMPRESARIAL ── -->
+    <div class="price-card">
+      <div class="price-tier">Empresarial</div>
+      <div class="price-amount">
+        <span style="font-size: 16px; color: var(--pyralis-text-muted);">desde </span><span class="currency">USD</span>3.000<span class="per"> /mes</span>
+      </div>
+      <div class="price-desc">Para cadenas, hospitales grandes y operaciones multi-sede.</div>
+      <ul class="price-features">
+        <li>Todas las apps + usuarios ilimitados</li>
+        <li>Integración con PACS / RIS (HL7 / FHIR)</li>
+        <li>SSO + autenticación corporativa</li>
+        <li>Multi-sede ilimitado</li>
+        <li>Cumplimiento HIPAA / Ley 26.529 (BAA incluido)</li>
+        <li>SLA 99.5% uptime</li>
+        <li>Onboarding presencial + training de equipo</li>
+      </ul>
+      <a href="#contacto" class="price-cta" data-plan="Empresarial">Solicitar propuesta</a>
+    </div>
+
+  </div>
+
+  <p class="pricing-footnote">
+    Precios en USD, facturados mensual o anualmente (15% off anual). Período de prueba 14 días sin tarjeta.
   </p>
-  <a href="mailto:santiagopitrella@gmail.com" class="contact-email">
-    <span>✉</span>
-    santiagopitrella@gmail.com
-  </a>
 </section>
+
+<!-- ═══════════════════ CONTACT FORM ═══════════════════ -->
+<section class="contact" id="contacto">
+  <h2>Hablemos de tu clínica</h2>
+  <p>
+    Contanos un poco sobre tu operación y te respondo personalmente en 24 hs hábiles
+    con una propuesta concreta o una invitación a demo.
+  </p>
+
+  <form class="contact-form" id="lead-form"
+        action="https://formspree.io/f/YOUR_FORM_ID"
+        method="POST">
+    <div class="form-row">
+      <label for="lf-nombre">Nombre</label>
+      <input type="text" id="lf-nombre" name="nombre" required placeholder="Ej. Dr. Juan Pérez" autocomplete="name"/>
+    </div>
+    <div class="form-row">
+      <label for="lf-email">Email</label>
+      <input type="email" id="lf-email" name="email" required placeholder="tu@clinica.com" autocomplete="email"/>
+    </div>
+    <div class="form-row">
+      <label for="lf-org">Tipo de organización</label>
+      <select id="lf-org" name="tipo_organizacion" required>
+        <option value="">Seleccioná una opción…</option>
+        <option value="independiente">Profesional independiente</option>
+        <option value="centro_diagnostico">Centro de diagnóstico</option>
+        <option value="clinica">Clínica privada</option>
+        <option value="hospital">Hospital / cadena</option>
+        <option value="otro">Otro</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label for="lf-plan">Plan de interés</label>
+      <select id="lf-plan" name="plan_interes">
+        <option value="">No estoy seguro todavía</option>
+        <option value="Starter">Starter (USD 49/mes)</option>
+        <option value="Clínica">Clínica (USD 199/mes)</option>
+        <option value="Empresarial">Empresarial (desde USD 3.000/mes)</option>
+        <option value="Demo">Solo quiero ver una demo</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label for="lf-mensaje">¿Algo más que quieras contarme? (opcional)</label>
+      <textarea id="lf-mensaje" name="mensaje" placeholder="Ej. Somos un centro de diagnóstico con 4 radiólogos, querríamos probar Dictom…"></textarea>
+    </div>
+    <input type="hidden" name="_subject" value="Nuevo lead Pyralis"/>
+    <button type="submit" class="form-submit" id="lf-submit">Enviar →</button>
+    <div id="lf-msg"></div>
+  </form>
+
+  <p style="margin-top: 24px; font-size: 12px; color: var(--pyralis-text-dim);">
+    También me podés escribir directo a
+    <a href="mailto:santiagopitrella@gmail.com" style="color: var(--pyralis-firefly-soft);">santiagopitrella@gmail.com</a>
+    o por WhatsApp.
+  </p>
+</section>
+
+<!-- ═══════════════════ SCRIPT FORM ═══════════════════ -->
+<script>
+(function(){
+  const form = document.getElementById('lead-form');
+  const submitBtn = document.getElementById('lf-submit');
+  const msgBox = document.getElementById('lf-msg');
+
+  // Si los botones de pricing tienen data-plan, prellenar el select cuando se hace click
+  document.querySelectorAll('[data-plan]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const plan = btn.getAttribute('data-plan');
+      setTimeout(() => {
+        const sel = document.getElementById('lf-plan');
+        const opt = Array.from(sel.options).find(o => o.value === plan);
+        if (opt) sel.value = plan;
+      }, 400);
+    });
+  });
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msgBox.innerHTML = '';
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando…';
+
+    const data = new FormData(form);
+    const endpoint = form.getAttribute('action');
+
+    // Si el form todavía tiene el placeholder de Formspree, fallback a mailto
+    if (endpoint.includes('YOUR_FORM_ID')) {
+      const subject = encodeURIComponent('Lead Pyralis · ' + (data.get('nombre') || '—'));
+      const body = encodeURIComponent(
+        `Nombre: ${data.get('nombre')}\n` +
+        `Email: ${data.get('email')}\n` +
+        `Organización: ${data.get('tipo_organizacion')}\n` +
+        `Plan de interés: ${data.get('plan_interes') || '(no especificado)'}\n\n` +
+        `Mensaje:\n${data.get('mensaje') || '(sin mensaje)'}`
+      );
+      window.location.href = `mailto:santiagopitrella@gmail.com?subject=${subject}&body=${body}`;
+      msgBox.className = 'form-msg success';
+      msgBox.textContent = 'Se abrió tu cliente de email para enviar el mensaje.';
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar →';
+      return;
+    }
+
+    try {
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.reset();
+        msgBox.className = 'form-msg success';
+        msgBox.textContent = '¡Gracias! Te respondo en 24 hs hábiles.';
+      } else {
+        throw new Error('Error en envío');
+      }
+    } catch (err) {
+      msgBox.className = 'form-msg error';
+      msgBox.innerHTML = 'No pudimos enviar el formulario. Escribime directo a <a href="mailto:santiagopitrella@gmail.com" style="color:#FCA5A5; text-decoration:underline;">santiagopitrella@gmail.com</a>.';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Enviar →';
+    }
+  });
+})();
+</script>
 
 <!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer class="footer">
