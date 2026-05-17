@@ -12,6 +12,122 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Crect width='60' height='60' rx='13' fill='%230A0F14'/%3E%3Ccircle cx='30' cy='30' r='10' fill='none' stroke='%23F59E0B' stroke-width='1' opacity='0.5'/%3E%3Ccircle cx='30' cy='30' r='5' fill='%23F59E0B'/%3E%3Ccircle cx='30' cy='30' r='2.2' fill='%23FEF3C7'/%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
 
+<!--
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  📊 ANALYTICS — Activar cuando tengas las IDs
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  GA4: https://analytics.google.com → Crear propiedad → copiar el "Measurement ID" (G-XXXXXXXXXX)
+  Microsoft Clarity (heatmaps gratis): https://clarity.microsoft.com → Crear proyecto → copiar el "Project ID"
+
+  Cuando tengas las IDs, descomentá los bloques de abajo y reemplazá los placeholders.
+  Sin esto, NO sabés cuánta gente visita, qué clickea, ni dónde abandona.
+  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+-->
+
+<!-- Google Analytics 4 (Pyralis Landing — propiedad creada 2026-05-17) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WW7NY9G84W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WW7NY9G84W');
+</script>
+
+<!-- Microsoft Clarity (Pyralis Landing — proyecto creado 2026-05-17) -->
+<script type="text/javascript">
+  (function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+  })(window, document, "clarity", "script", "wskcp6rxyr");
+</script>
+
+<!-- Schema.org JSON-LD para SEO + AI search visibility -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://pyralis.app/#organization",
+      "name": "Pyralis",
+      "url": "https://pyralis.app/",
+      "logo": "https://pyralis.app/logo.png",
+      "description": "Pyralis construye apps verticales para clínicas y centros de diagnóstico en LATAM. Dictom (dictado radiológico) y Lumen (operaciones clínicas) ya en producción.",
+      "founder": {
+        "@type": "Person",
+        "name": "Santiago Pitrella",
+        "jobTitle": "Médico · Founder",
+        "email": "santiagopitrella@gmail.com"
+      },
+      "areaServed": "LATAM"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Dictom",
+      "applicationCategory": "MedicalApplication",
+      "operatingSystem": "Web",
+      "description": "Dictado radiológico inteligente. De la voz al informe ACR completo en segundos. Soporta RX, RM, TC y US.",
+      "offers": {
+        "@type": "Offer",
+        "price": "49",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": "49",
+          "priceCurrency": "USD",
+          "billingIncrement": "1",
+          "unitText": "MONTH"
+        }
+      },
+      "url": "https://santipitre.github.io/dictom/"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Lumen",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Operaciones clínicas claras. Dashboard ejecutivo, stock FEFO, mensajería, licencias y multi-rol en una sola interfaz.",
+      "offers": {
+        "@type": "Offer",
+        "price": "199",
+        "priceCurrency": "USD"
+      },
+      "url": "https://santipitre.github.io/lumen/"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Se integra con mi PACS / RIS?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En el plan Empresarial sí — soportamos HL7 y FHIR para integración con sistemas hospitalarios. En Starter y Clínica, Dictom funciona standalone exportando a Word o PDF."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué pasa con la confidencialidad de los datos de pacientes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En Dictom, el dictado y el texto del informe nunca pasan por servidores de Pyralis. Viajan directo del browser a la API de Gemini con tu propia API key. En Lumen, los datos viven en Supabase con encriptación at-rest, aislamiento por organización y backups diarios."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo es la prueba gratuita?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "14 días sin tarjeta. Acceso completo a Dictom o Lumen con datos de ejemplo precargados. Si al día 14 no querés seguir, no pagás nada."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 <style>
 :root {
   --pyralis-bg:           #0A0F14;
@@ -395,6 +511,149 @@ body::after {
   }
 }
 
+/* ── STEPS (Cómo funciona) ── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 8px;
+}
+.step-card {
+  background: var(--pyralis-bg-elevated);
+  border: 0.5px solid var(--pyralis-border);
+  border-radius: 14px;
+  padding: 28px 26px;
+  position: relative;
+  transition: border-color 0.25s, transform 0.25s;
+}
+.step-card:hover { border-color: var(--pyralis-border-strong); transform: translateY(-2px); }
+.step-number {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(245, 158, 11, 0.12);
+  border: 0.5px solid rgba(245, 158, 11, 0.4);
+  color: var(--pyralis-firefly-soft);
+  font-weight: 500; font-size: 14px;
+  margin-bottom: 16px;
+}
+.step-title {
+  font-size: 17px; font-weight: 500;
+  color: var(--pyralis-text);
+  margin-bottom: 8px;
+  letter-spacing: -0.015em;
+}
+.step-desc {
+  font-size: 14px;
+  color: var(--pyralis-text-muted);
+  line-height: 1.6;
+}
+
+/* ── WHY / QUIÉN ── */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.why-item {
+  text-align: left;
+  padding: 24px 22px;
+  background: var(--pyralis-bg-elevated);
+  border: 0.5px solid var(--pyralis-border);
+  border-radius: 12px;
+}
+.why-icon {
+  font-size: 22px; margin-bottom: 12px;
+  color: var(--pyralis-firefly-soft);
+}
+.why-title {
+  font-size: 15px; font-weight: 500;
+  color: var(--pyralis-text);
+  margin-bottom: 6px;
+}
+.why-desc {
+  font-size: 13px;
+  color: var(--pyralis-text-muted);
+  line-height: 1.55;
+}
+.founder-block {
+  max-width: 720px; margin: 0 auto;
+  background: var(--pyralis-bg-elevated);
+  border: 0.5px solid var(--pyralis-border);
+  border-radius: 14px;
+  padding: 32px 30px;
+  text-align: left;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  align-items: center;
+}
+.founder-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(245,158,11,0.25), rgba(6,182,212,0.2));
+  border: 0.5px solid var(--pyralis-border-strong);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; font-weight: 500;
+  color: var(--pyralis-firefly-glow);
+  flex-shrink: 0;
+}
+.founder-name {
+  font-size: 16px; font-weight: 500; color: var(--pyralis-text);
+  margin-bottom: 2px;
+}
+.founder-role {
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--pyralis-text-dim); margin-bottom: 10px;
+}
+.founder-bio {
+  font-size: 14px; color: var(--pyralis-text-muted);
+  line-height: 1.6;
+}
+
+/* ── FAQ ── */
+.faq-list {
+  max-width: 760px; margin: 0 auto;
+  display: grid; gap: 10px;
+}
+.faq-item {
+  background: var(--pyralis-bg-elevated);
+  border: 0.5px solid var(--pyralis-border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.faq-item[open] { border-color: var(--pyralis-border-strong); }
+.faq-item summary {
+  cursor: pointer;
+  padding: 18px 22px;
+  font-size: 15px; font-weight: 500;
+  color: var(--pyralis-text);
+  list-style: none;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+  transition: color 0.15s;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: '+'; font-size: 22px; font-weight: 400;
+  color: var(--pyralis-firefly-soft);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item summary:hover { color: var(--pyralis-firefly-soft); }
+.faq-answer {
+  padding: 0 22px 20px;
+  font-size: 14px;
+  color: var(--pyralis-text-muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 600px) {
+  .founder-block { grid-template-columns: 1fr; text-align: center; padding: 26px 22px; }
+  .founder-avatar { margin: 0 auto; }
+}
+
 /* ── PRICING ── */
 .pricing-grid {
   display: grid;
@@ -573,7 +832,8 @@ body::after {
     <div class="nav-links">
       <a href="#apps">Apps</a>
       <a href="#precios">Precios</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#por-que">Por qué</a>
+      <a href="#faq">FAQ</a>
       <a href="#contacto" class="nav-cta">Hablemos</a>
     </div>
   </div>
@@ -606,6 +866,41 @@ body::after {
   </a>
 </section>
 
+<!-- ═══════════════════ CÓMO FUNCIONA ═══════════════════ -->
+<section class="section" id="como-funciona" style="padding-top: 40px; padding-bottom: 40px;">
+  <div class="section-header">
+    <div class="section-eyebrow">Cómo funciona</div>
+    <h2>Probar Pyralis lleva 3 minutos</h2>
+    <p class="section-subtitle">
+      Sin instaladores, sin reuniones de venta obligatorias, sin compromiso anual.
+    </p>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-number">1</div>
+      <div class="step-title">Abrís la app que te interesa</div>
+      <div class="step-desc">
+        Dictom y Lumen funcionan en cualquier navegador moderno. No hay nada que instalar ni configurar en tu PC.
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-number">2</div>
+      <div class="step-title">Probás con tus datos reales</div>
+      <div class="step-desc">
+        14 días de prueba sin tarjeta. En Dictom basta tu API key de Gemini (gratis hasta 1500 informes/día). Lumen viene con datos de ejemplo precargados.
+      </div>
+    </div>
+    <div class="step-card">
+      <div class="step-number">3</div>
+      <div class="step-title">Si funciona, hablemos</div>
+      <div class="step-desc">
+        Te respondo personalmente. Armamos el plan que corresponda a tu operación — desde médico solo hasta cadena multi-sede.
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ═══════════════════ APPS ═══════════════════ -->
 <section class="section" id="apps">
   <div class="section-header">
@@ -635,13 +930,13 @@ body::after {
         <span class="by">— BY —</span><span class="pyralis">Pyralis</span>
       </div>
       <p class="app-desc">
-        Dictado radiológico inteligente. De la voz al informe completo en segundos, con estándares ACR y léxico controlado. Entrenado con corpus institucional real.
+        De la voz al informe radiológico completo en segundos. Plantillas ACR para RX, RM, TC y US, lenguaje clínico controlado y aprendizaje de tu estilo de dictado. Pensado por un médico para médicos.
       </p>
       <ul class="app-features">
-        <li>Dictado por voz + plantillas ACR</li>
-        <li>Comunicación crítica automática (BI-RADS, Lung-RADS, etc.)</li>
-        <li>Exportación a Word / PDF</li>
-        <li>Sin instalación, corre en el browser</li>
+        <li>Dictado por voz + plantillas ACR (RX · RM · TC · US)</li>
+        <li>Categorización automática (BI-RADS, Lung-RADS, TI-RADS)</li>
+        <li>Exportación a Word y PDF con tu logo</li>
+        <li>Tus datos no salen del browser — BYOK con tu API key</li>
       </ul>
       <a href="https://santipitre.github.io/dictom/" target="_blank" class="app-link">
         Probar Dictom
@@ -666,13 +961,14 @@ body::after {
         <span class="by">— BY —</span><span class="pyralis">Pyralis</span>
       </div>
       <p class="app-desc">
-        Operaciones clínicas claras. Control de turnos, stock, pedidos, mensajería interna y licencias en una sola interfaz. Pensado para equipos que necesitan visibilidad operativa sin sobrecarga.
+        Tu clínica de un vistazo. Lumen unifica lo que hoy vive en 6 planillas distintas: tiempos de atención por médico, stock con vencimientos, pedidos, licencias y mensajería interna. Una interfaz por rol — médico, jefe, operativo, administrativo.
       </p>
       <ul class="app-features">
-        <li>Control de turnos y derivantes</li>
-        <li>Stock FEFO con alertas automáticas</li>
+        <li>Dashboard ejecutivo: TAT, heatmaps, proyección de demanda</li>
+        <li>Stock FEFO con alertas y catálogo multi-sede</li>
         <li>Mensajería interna con firma digital QR</li>
-        <li>Gestión de licencias y permisos por rol</li>
+        <li>Licencias y aprobaciones con bandeja por jefatura</li>
+        <li>PWA — se instala en celu, tablet o desktop</li>
       </ul>
       <a href="https://santipitre.github.io/lumen/" target="_blank" class="app-link">
         Probar Lumen
@@ -757,6 +1053,119 @@ body::after {
   </p>
 </section>
 
+<!-- ═══════════════════ POR QUÉ PYRALIS ═══════════════════ -->
+<section class="section" id="por-que">
+  <div class="section-header">
+    <div class="section-eyebrow">Por qué Pyralis</div>
+    <h2>Software vertical, no plataforma genérica</h2>
+    <p class="section-subtitle">
+      Las apps de Pyralis no intentan resolver "todo para todos". Cada una resuelve un proceso clínico real, escrita con criterio médico, no con plantillas de software hospitalario.
+    </p>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="why-icon">⚕️</div>
+      <div class="why-title">Criterio clínico real</div>
+      <div class="why-desc">
+        Pyralis lo construye un médico que también programa. Cada decisión de UX nace del piso, no de un brief de marketing.
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">🔒</div>
+      <div class="why-title">Tus datos, tu control</div>
+      <div class="why-desc">
+        Dictom corre en el browser y nunca manda tus informes a servidores nuestros. Lumen usa Supabase con encriptación at-rest y aislamiento por organización.
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Onboarding en horas, no meses</div>
+      <div class="why-desc">
+        Sin consultores, sin migraciones eternas. Si funciona Excel, funciona Pyralis. La curva de aprendizaje es de una tarde.
+      </div>
+    </div>
+    <div class="why-item">
+      <div class="why-icon">💬</div>
+      <div class="why-title">Trato directo, no soporte tier 1</div>
+      <div class="why-desc">
+        Cuando escribís a Pyralis, te responde quien construye el producto. Sin tickets que dan vueltas dos semanas.
+      </div>
+    </div>
+  </div>
+
+  <!-- Founder block -->
+  <div class="founder-block">
+    <div class="founder-avatar" aria-hidden="true">SP</div>
+    <div>
+      <div class="founder-name">Santiago Pitrella</div>
+      <div class="founder-role">Médico · Founder de Pyralis</div>
+      <div class="founder-bio">
+        Construyo Pyralis porque trabajé con software clínico desde adentro y vi todo lo que falla. Dictom nació para no perder dos horas por día redactando informes. Lumen nació para que un jefe de servicio pueda ver el estado real de su operación sin pedirle un Excel a 4 personas distintas. Hablar con un médico/dev que entiende el problema vale más que cualquier feature list.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ FAQ ═══════════════════ -->
+<section class="section" id="faq" style="padding-top: 40px;">
+  <div class="section-header">
+    <div class="section-eyebrow">Preguntas frecuentes</div>
+    <h2>Lo que suelen preguntarme antes de empezar</h2>
+  </div>
+
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>¿Se integra con mi PACS / RIS?</summary>
+      <div class="faq-answer">
+        En el plan Empresarial sí — soportamos HL7 y FHIR para integración con sistemas hospitalarios. En Starter y Clínica, Dictom funciona standalone (exportás Word/PDF y lo subís manualmente o por copy-paste). La mayoría de los centros chicos no tienen PACS, así que esto solo aplica a hospitales medianos para arriba.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué pasa con la confidencialidad de los datos de pacientes?</summary>
+      <div class="faq-answer">
+        En Dictom, el dictado y el texto del informe nunca pasan por servidores de Pyralis — viajan directo del browser a la API de Gemini con tu propia API key. En Lumen, los datos viven en Supabase (PostgreSQL) con encriptación at-rest, aislamiento por organización y backups diarios. El plan Empresarial incluye BAA y cumplimiento HIPAA / Ley 26.529.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Cómo es la prueba gratuita?</summary>
+      <div class="faq-answer">
+        14 días sin tarjeta. Te doy acceso a Dictom o Lumen con datos de ejemplo precargados, o conectás tu API key de Gemini (Google da 1500 informes/día gratis con Flash). Si al día 14 no querés seguir, no pagás nada. Si querés seguir, elegís el plan que más te sirva.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Puedo facturar Pyralis como gasto deducible?</summary>
+      <div class="faq-answer">
+        Sí. Facturamos como servicios profesionales en USD (con o sin IVA según jurisdicción). Para clínicas en Argentina, lo manejamos como exportación de servicios. Si necesitás factura en pesos al tipo de cambio del día, también se puede coordinar.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué tan rápido aprende el equipo a usarlo?</summary>
+      <div class="faq-answer">
+        Dictom: un radiólogo lo aprende en 30 minutos de uso real. Lumen: cada rol (médico, jefe, operativo) ve solo su módulo, así que la curva por persona es de una tarde. En el plan Clínica incluyo una sesión de Zoom de 45 minutos para arrancar; en el Empresarial, training presencial.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Y si necesito una funcionalidad que hoy no tienen?</summary>
+      <div class="faq-answer">
+        Lo hablamos. Si el pedido tiene sentido para más clínicas, lo construyo y queda incluido. Si es muy específico, lo cotizo aparte. Trabajo así porque cada feature pedida por un usuario real vale más que diez ideadas en un escritorio.
+      </div>
+    </details>
+
+    <details class="faq-item">
+      <summary>¿Qué pasa con la app si dejo de pagar?</summary>
+      <div class="faq-answer">
+        Tus datos siguen siendo tuyos. Te exporto todo (informes, pedidos, stock, historial) en CSV/JSON y los podés llevar a otro sistema. No hay lock-in. Si pausás 30 días, mantengo tu cuenta congelada sin costo.
+      </div>
+    </details>
+  </div>
+</section>
+
 <!-- ═══════════════════ CONTACT FORM ═══════════════════ -->
 <section class="contact" id="contacto">
   <h2>Hablemos de tu clínica</h2>
@@ -765,9 +1174,27 @@ body::after {
     con una propuesta concreta o una invitación a demo.
   </p>
 
-  <form class="contact-form" id="lead-form"
-        action="https://formspree.io/f/YOUR_FORM_ID"
-        method="POST">
+  <!--
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    📬 CONFIGURACIÓN DEL FORMULARIO — WEB3FORMS
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    1. Andá a https://web3forms.com/
+    2. Pegá tu email (santiagopitrella@gmail.com) y dale "Create Access Key"
+    3. Te llega un mail con tu access_key (formato: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
+    4. Reemplazá abajo "PUT_YOUR_WEB3FORMS_ACCESS_KEY_HERE" por tu key
+    5. Listo. Cada lead te llega a tu inbox con todos los campos.
+
+    Mientras el access_key no esté configurado, el form cae a mailto automáticamente.
+    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  -->
+  <form class="contact-form" id="lead-form" method="POST">
+    <input type="hidden" name="access_key" value="e2ea46fc-2c78-447b-9ba4-9d05b9787eae"/>
+    <input type="hidden" name="from_name" value="Pyralis Landing"/>
+    <input type="hidden" name="subject" value="Nuevo lead Pyralis"/>
+    <input type="hidden" name="redirect" value="false"/>
+    <!-- Honeypot anti-spam (Web3Forms): si un bot lo llena, el envío se rechaza -->
+    <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off"/>
+
     <div class="form-row">
       <label for="lf-nombre">Nombre</label>
       <input type="text" id="lf-nombre" name="nombre" required placeholder="Ej. Dr. Juan Pérez" autocomplete="name"/>
@@ -801,7 +1228,6 @@ body::after {
       <label for="lf-mensaje">¿Algo más que quieras contarme? (opcional)</label>
       <textarea id="lf-mensaje" name="mensaje" placeholder="Ej. Somos un centro de diagnóstico con 4 radiólogos, querríamos probar Dictom…"></textarea>
     </div>
-    <input type="hidden" name="_subject" value="Nuevo lead Pyralis"/>
     <button type="submit" class="form-submit" id="lf-submit">Enviar →</button>
     <div id="lf-msg"></div>
   </form>
@@ -839,10 +1265,10 @@ body::after {
     submitBtn.textContent = 'Enviando…';
 
     const data = new FormData(form);
-    const endpoint = form.getAttribute('action');
+    const accessKey = data.get('access_key');
 
-    // Si el form todavía tiene el placeholder de Formspree, fallback a mailto
-    if (endpoint.includes('YOUR_FORM_ID')) {
+    // Si el access_key sigue siendo el placeholder, fallback a mailto
+    if (!accessKey || accessKey === 'PUT_YOUR_WEB3FORMS_ACCESS_KEY_HERE') {
       const subject = encodeURIComponent('Lead Pyralis · ' + (data.get('nombre') || '—'));
       const body = encodeURIComponent(
         `Nombre: ${data.get('nombre')}\n` +
@@ -859,18 +1285,27 @@ body::after {
       return;
     }
 
+    // Envío real a Web3Forms
     try {
-      const res = await fetch(endpoint, {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: data,
         headers: { 'Accept': 'application/json' }
       });
-      if (res.ok) {
+      const json = await res.json();
+      if (res.ok && json.success) {
         form.reset();
         msgBox.className = 'form-msg success';
         msgBox.textContent = '¡Gracias! Te respondo en 24 hs hábiles.';
+        // Tracking de conversión (GA4 — solo dispara si gtag está cargado)
+        if (typeof gtag === 'function') {
+          gtag('event', 'generate_lead', {
+            event_category: 'form',
+            event_label: data.get('plan_interes') || 'sin_plan'
+          });
+        }
       } else {
-        throw new Error('Error en envío');
+        throw new Error(json.message || 'Error en envío');
       }
     } catch (err) {
       msgBox.className = 'form-msg error';
@@ -886,6 +1321,7 @@ body::after {
 <!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer class="footer">
   Pyralis <span class="firefly-dot">·</span> 2026 <span class="firefly-dot">·</span> Apps verticales para salud.
+  <!-- Sprint 1 deployed: 2026-05-17 -->
 </footer>
 
 </body>
