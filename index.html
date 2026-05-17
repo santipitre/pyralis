@@ -211,17 +211,141 @@ body::after {
   box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
 }
 
-/* ── HERO ── */
+/* ── HERO (Full Cinematic Stack) ── */
 .hero {
   max-width: 1200px; margin: 0 auto;
-  padding: 100px 28px 120px;
+  padding: 80px 28px 100px;
   text-align: center;
   position: relative; z-index: 1;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 580px;
+  animation: heroStageFade 5s ease-out forwards;
 }
+@keyframes heroStageFade {
+  0%   { background: radial-gradient(ellipse at center, rgba(0,0,0,.6), transparent 70%), transparent; }
+  100% { background: transparent; }
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 0 rgba(0,0,0,0);
+  animation: heroVignetteOn 3.5s ease-out forwards;
+  z-index: 1;
+}
+@keyframes heroVignetteOn {
+  to { box-shadow: inset 0 0 240px 60px rgba(0,0,0,.55); }
+}
+.hero-bg-grid {
+  position: absolute; inset: -2px;
+  background-image:
+    linear-gradient(rgba(245,158,11,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,11,.05) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 70% 50% at 50% 40%, black 0%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 40%, black 0%, transparent 75%);
+  animation: heroGridShift 40s linear infinite;
+  z-index: 1; pointer-events: none;
+}
+@keyframes heroGridShift {
+  to { background-position: 80px 80px; }
+}
+.hero-blob {
+  position: absolute; top: 38%; left: 50%;
+  width: 520px; height: 300px;
+  background: radial-gradient(circle at 30% 30%, rgba(254,243,199,.4), rgba(245,158,11,.35) 40%, transparent 80%);
+  filter: blur(45px); mix-blend-mode: screen;
+  animation: heroBlobMorph 12s ease-in-out infinite;
+  z-index: 1; pointer-events: none;
+}
+@keyframes heroBlobMorph {
+  0%,100% { border-radius: 55% 45% 50% 50% / 50% 55% 45% 50%; transform: translate(-50%,-50%) rotate(0deg); }
+  50%     { border-radius: 45% 55% 50% 50% / 60% 45% 55% 40%; transform: translate(-50%,-50%) rotate(15deg); }
+}
+.hero-horizon {
+  position: absolute; bottom: 28%; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(245,158,11,.5) 30%, rgba(254,243,199,.95) 50%, rgba(245,158,11,.5) 70%, transparent);
+  box-shadow: 0 0 24px rgba(245,158,11,.55);
+  opacity: 0; transform-origin: center;
+  animation: heroHorizonGlow 1.8s ease-out 4.5s forwards;
+  z-index: 2; pointer-events: none;
+}
+@keyframes heroHorizonGlow {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+.hero-sun {
+  position: absolute; bottom: 21%; left: 50%;
+  width: 36px; height: 36px; margin-left: -18px; border-radius: 50%;
+  background: radial-gradient(circle, var(--pyralis-firefly-glow) 0%, var(--pyralis-firefly-soft) 40%, var(--pyralis-firefly) 80%, transparent 100%);
+  box-shadow: 0 0 30px rgba(252,211,77,.85), 0 0 70px rgba(245,158,11,.55);
+  opacity: 0;
+  animation: heroSunIn 1.2s ease-out 5s forwards, heroSunPulse 4s ease-in-out 6.5s infinite;
+  z-index: 2; pointer-events: none;
+}
+@keyframes heroSunIn  { to { opacity: 1; } }
+@keyframes heroSunPulse {
+  0%,100% { transform: translate(0,0) scale(1); opacity: .9; }
+  50%     { transform: translate(0,-8px) scale(1.05); opacity: 1; }
+}
+.hero-dot {
+  position: absolute; top: 50%; left: 50%;
+  width: 3px; height: 3px; border-radius: 50%;
+  background: var(--pyralis-firefly);
+  box-shadow: 0 0 4px var(--pyralis-firefly-glow), 0 0 10px var(--pyralis-firefly);
+  opacity: 0;
+  animation: heroDotFadeIn 1s ease-out forwards, heroDotFloat 6s ease-in-out infinite;
+  z-index: 2; pointer-events: none;
+}
+@keyframes heroDotFadeIn { to { opacity: .8; } }
+@keyframes heroDotFloat {
+  0%,100% { transform: translate(var(--dx,0), var(--dy,0)) scale(1); opacity: .8; }
+  50%     { transform: translate(calc(var(--dx,0) + 12px), calc(var(--dy,0) - 8px)) scale(1.2); opacity: 1; }
+}
+.hero-spotlight {
+  position: absolute; top: 22%; left: 50%;
+  width: 260px; height: 260px; margin: -130px 0 0 -130px;
+  background: radial-gradient(circle, rgba(254,243,199,.35) 0%, rgba(245,158,11,.18) 30%, transparent 70%);
+  mix-blend-mode: screen;
+  animation: heroSpotSweep 4.5s cubic-bezier(.6,0,.4,1) forwards;
+  z-index: 3; pointer-events: none;
+}
+@keyframes heroSpotSweep {
+  0%   { transform: translateX(-380px); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: translateX(380px); opacity: 0; }
+}
+.hero-wordmark {
+  position: relative; z-index: 4;
+  font-size: clamp(64px, 13vw, 130px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  margin-bottom: 30px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+.hero-wordmark span.l {
+  display: inline-block;
+  color: #1a1a1a;
+  opacity: 0;
+  animation: heroLetterLit 2.2s cubic-bezier(.4,0,.2,1) both;
+}
+.hero-wordmark .firefly-a { font-weight: 600; }
+.hero-wordmark .firefly-a.lit {
+  animation: heroLetterLit 2.2s cubic-bezier(.4,0,.2,1) both,
+             firefly-text-pulse 2.8s ease-in-out 5.5s infinite;
+}
+@keyframes heroLetterLit {
+  0%, 25% { opacity: 0; color: #1a1a1a; text-shadow: none; transform: scale(.95); }
+  60%     { opacity: 1; color: var(--pyralis-firefly-glow); text-shadow: 0 0 30px var(--pyralis-firefly-soft), 0 0 60px var(--pyralis-firefly); transform: scale(1.02); }
+  100%    { opacity: 1; color: var(--pyralis-text); text-shadow: 0 0 4px rgba(254,243,199,.7), 0 0 14px rgba(245,158,11,.4); transform: scale(1); }
+}
+/* Compatibilidad con clase legacy (no romper) */
 .hero-logo {
   margin: 0 auto 40px;
   width: 110px; height: 110px;
   position: relative;
+  display: none;
 }
 .hero h1 {
   font-size: clamp(36px, 7vw, 64px);
@@ -841,26 +965,40 @@ body::after {
 
 <!-- ═══════════════════ HERO ═══════════════════ -->
 <section class="hero">
-  <div class="hero-logo fade-up">
-    <svg class="firefly-svg" width="110" height="110" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-label="Pyralis">
-      <rect x="3" y="3" width="54" height="54" rx="13" fill="#0A0F14" stroke="#1F2937" stroke-width="0.8"/>
-      <circle cx="30" cy="30" r="12" fill="none" stroke="#F59E0B" stroke-width="0.6" opacity="0.35"/>
-      <circle cx="30" cy="30" r="6" fill="#F59E0B"/>
-      <circle cx="30" cy="30" r="2.6" fill="#FEF3C7"/>
-    </svg>
-  </div>
+  <!-- Capas cinematográficas del Hero Híbrido 3 -->
+  <div class="hero-bg-grid" aria-hidden="true"></div>
+  <div class="hero-blob" aria-hidden="true"></div>
+  <div class="hero-horizon" aria-hidden="true"></div>
+  <div class="hero-sun" aria-hidden="true"></div>
 
-  <h1 class="fade-up-delay-1">
-    Herramientas que <span class="highlight">iluminan</span><br>
-    procesos clínicos.
+  <div class="hero-dot" style="--dx:-220px; --dy:-160px; animation-delay: 1.5s, 0s;" aria-hidden="true"></div>
+  <div class="hero-dot" style="--dx: 240px; --dy:-140px; animation-delay: 1.7s, 0s;" aria-hidden="true"></div>
+  <div class="hero-dot" style="--dx:-200px; --dy: 140px; animation-delay: 2.0s, 0s;" aria-hidden="true"></div>
+  <div class="hero-dot" style="--dx: 220px; --dy: 160px; animation-delay: 2.2s, 0s;" aria-hidden="true"></div>
+  <div class="hero-dot" style="--dx:-140px; --dy:-100px; animation-delay: 2.4s, 0s;" aria-hidden="true"></div>
+  <div class="hero-dot" style="--dx: 160px; --dy: 100px; animation-delay: 2.6s, 0s;" aria-hidden="true"></div>
+  <div class="hero-dot" style="--dx:-280px; --dy:  20px; animation-delay: 1.8s, 0s;" aria-hidden="true"></div>
+  <div class="hero-dot" style="--dx: 290px; --dy: -30px; animation-delay: 2.1s, 0s;" aria-hidden="true"></div>
+
+  <div class="hero-spotlight" aria-hidden="true"></div>
+
+  <!-- Wordmark gigante cinemático: P-y-r-a-l-i-s (a = luciérnaga) -->
+  <h1 class="hero-wordmark" aria-label="Pyralis">
+    <span class="l" style="animation-delay:.40s">P</span><span class="l" style="animation-delay:.65s">y</span><span class="l" style="animation-delay:.90s">r</span><span class="l firefly-a lit" style="animation-delay:1.15s">a</span><span class="l" style="animation-delay:1.40s">l</span><span class="l" style="animation-delay:1.65s">i</span><span class="l" style="animation-delay:1.90s">s</span>
   </h1>
 
-  <p class="lead fade-up-delay-2">
+  <!-- Bloque existente (intacto, ahora vive bajo el wordmark) -->
+  <h2 style="font-size: clamp(28px, 4.5vw, 42px); font-weight: 500; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 18px; color: var(--pyralis-text); position: relative; z-index: 4;" class="fade-up-delay-1">
+    Herramientas que <span class="highlight">iluminan</span><br>
+    procesos clínicos.
+  </h2>
+
+  <p class="lead fade-up-delay-2" style="position: relative; z-index: 4;">
     Pyralis construye apps verticales para clínicas y centros de diagnóstico en LATAM.
     Cada app es una luciérnaga: un punto brillante que guía en la oscuridad operativa.
   </p>
 
-  <a href="#apps" class="hero-cta fade-up-delay-3">
+  <a href="#apps" class="hero-cta fade-up-delay-3" style="position: relative; z-index: 4;">
     Ver las apps
     <span class="arrow">→</span>
   </a>
