@@ -101,6 +101,19 @@
       "url": "https://santipitre.github.io/lumen/"
     },
     {
+      "@type": "SoftwareApplication",
+      "name": "Turnova",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "IA que lee pedidos médicos por WhatsApp y asigna turnos automáticamente respetando obra social, urgencia y cupos semanales.",
+      "offers": {
+        "@type": "Offer",
+        "price": "149",
+        "priceCurrency": "USD"
+      },
+      "url": "https://santipitre.github.io/turnova/"
+    },
+    {
       "@type": "FAQPage",
       "mainEntity": [
         {
@@ -148,6 +161,7 @@
   --pyralis-text-dim:     #64748B;
   --accent-dictom:        #F59E0B;
   --accent-lumen:         #06B6D4;
+  --accent-turnova:       #A78BFA;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body {
@@ -436,8 +450,9 @@ body::after {
   border-color: var(--pyralis-border-strong);
   transform: translateY(-3px);
 }
-.app-card.dictom { --app-accent: var(--accent-dictom); }
-.app-card.lumen  { --app-accent: var(--accent-lumen); }
+.app-card.dictom  { --app-accent: var(--accent-dictom); }
+.app-card.lumen   { --app-accent: var(--accent-lumen); }
+.app-card.turnova { --app-accent: var(--accent-turnova); }
 
 .app-mono {
   margin-bottom: 24px;
@@ -1067,6 +1082,39 @@ body::after {
       </ul>
       <a href="https://santipitre.github.io/dictom/" target="_blank" class="app-link">
         Probar Dictom
+        <span>→</span>
+      </a>
+    </div>
+
+    <!-- ── TURNOVA ── -->
+    <div class="app-card turnova">
+      <div class="app-mono">
+        <svg class="firefly-svg" width="56" height="56" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg" aria-label="Turnova by Pyralis">
+          <rect x="3" y="3" width="54" height="54" rx="13" fill="#0A0F14" stroke="#1F2937" stroke-width="0.8"/>
+          <!-- Letra T -->
+          <path d="M14 14 L46 14 M30 14 L30 46" fill="none" stroke="#F1F5F9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Punto amber (la "o" de Turnova) -->
+          <circle cx="40" cy="34" r="9" fill="none" stroke="#F59E0B" stroke-width="0.6" opacity="0.4"/>
+          <circle cx="40" cy="34" r="4" fill="#F59E0B"/>
+          <circle cx="40" cy="34" r="1.8" fill="#FEF3C7"/>
+        </svg>
+      </div>
+      <div class="app-status">En producción</div>
+      <div class="app-name">Turn<span class="firefly-o">o</span>va</div>
+      <div class="app-byline">
+        <span class="by">— BY —</span><span class="pyralis">Pyralis</span>
+      </div>
+      <p class="app-desc">
+        Asigná turnos médicos antes de que el paciente termine de escribir. Turnova lee pedidos médicos por WhatsApp, identifica obra social y práctica con IA, y agenda el turno respetando las reglas VIP y cupos semanales de tu centro. Integra con BOTMAKER nativo.
+      </p>
+      <ul class="app-features">
+        <li>IA Claude Sonnet 4.5 que lee fotos y PDFs de pedidos</li>
+        <li>Motor de reglas configurable: VIP 72hs, no-VIP cupos semanales</li>
+        <li>Integración BOTMAKER nativa con webhooks bidireccionales</li>
+        <li>Multi-tenant Supabase con RLS — Ley 25.326 ready</li>
+      </ul>
+      <a href="https://santipitre.github.io/turnova/" target="_blank" class="app-link">
+        Probar Turnova
         <span>→</span>
       </a>
     </div>
